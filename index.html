@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer Awareness & Support</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <div class="nav-container">
+            <h1 class="logo">💚 Cancer Awareness</h1>
+            <nav class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#quotes" class="nav-link">Inspiration</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero/Landing Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <svg class="ribbon-illustration" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                <!-- Pink Ribbon Illustration -->
+                <defs>
+                    <linearGradient id="ribbonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#ff69b4;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#ff1493;stop-opacity:0.9" />
+                    </linearGradient>
+                </defs>
+                <!-- Ribbon loops -->
+                <ellipse cx="100" cy="80" rx="35" ry="45" fill="url(#ribbonGradient)" opacity="0.9"/>
+                <ellipse cx="100" cy="80" rx="25" ry="35" fill="#fff" opacity="0.3"/>
+                <!-- Ribbon tail -->
+                <path d="M 100 125 Q 85 150 80 200" stroke="url(#ribbonGradient)" stroke-width="15" fill="none" stroke-linecap="round"/>
+                <path d="M 100 125 Q 115 150 120 200" stroke="url(#ribbonGradient)" stroke-width="15" fill="none" stroke-linecap="round"/>
+                <!-- Heart accent -->
+                <path d="M 100 60 Q 95 50 85 50 Q 75 50 75 60 Q 75 70 100 85 Q 125 70 125 60 Q 125 50 115 50 Q 105 50 100 60" fill="white" opacity="0.7"/>
+            </svg>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Together, We Are <span class="highlight">Stronger</span></h1>
+            <p class="hero-subtitle">
+                Cancer touches millions of lives every year. Through awareness, support,<br>
+                and compassion, we can make a difference. You are never alone in this<br>
+                journey — together, we stand united in hope and healing.
+            </p>
+            <div class="hero-buttons">
+                <button class="cta-button primary" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">💚 Get Support</button>
+                <button class="cta-button secondary" onclick="document.getElementById('quotes').scrollIntoView({ behavior: 'smooth' })">Find Inspiration</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real-Time Quotes Section -->
+    <section id="quotes" class="quotes-section">
+        <div class="container">
+            <h2 class="section-title">Daily Inspiration</h2>
+            <p class="section-subtitle">A motivational message for you today</p>
+            
+            <div class="quote-card">
+                <div class="quote-content">
+                    <p class="quote-text" id="quoteText">"Loading your daily inspiration..."</p>
+                    <p class="quote-author" id="quoteAuthor">— Stay Strong</p>
+                </div>
+            </div>
+            
+            <button class="refresh-button" onclick="fetchQuote()">Get Another Quote</button>
+        </div>
+    </section>
+
+    <!-- Survivor Stories Section -->
+    <section id="stories" class="stories-section">
+        <div class="container">
+            <div class="stories-header">
+                <p class="stories-label">Stories of Hope</p>
+                <h2 class="section-title">Voices of <span class="highlight">Courage</span></h2>
+                <p class="section-subtitle">Real stories from real survivors. Their journeys remind us that hope is stronger than fear, and together, we can overcome anything.</p>
+            </div>
+            
+            <div class="carousel-container">
+                <button class="carousel-nav prev" onclick="prevStory()">❮</button>
+                
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Stories will be inserted here -->
+                    </div>
+                </div>
+                
+                <button class="carousel-nav next" onclick="nextStory()">❯</button>
+            </div>
+            
+            <div class="carousel-indicators" id="carouselIndicators">
+                <!-- Indicators will be inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">We're here to listen and support you</p>
+            
+            <!-- Welcome Modal/Toast (Hidden by default) -->
+            <div id="welcomeMessage" class="welcome-message hidden">
+                <div class="welcome-overlay"></div>
+                <div class="welcome-content">
+                    <button class="close-button" onclick="closeWelcomeMessage()">✕</button>
+                    <div class="welcome-icon">✨</div>
+                    <h3 class="welcome-title">Thank You for Joining the Cause</h3>
+                    <p class="welcome-text">Together we shine! Your support means everything in this fight against cancer.</p>
+                    <button class="welcome-action-button" onclick="closeWelcomeMessage()">Continue</button>
+                </div>
+            </div>
+            
+            <!-- Contact Form Card -->
+            <div class="form-card-wrapper">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name">
+                        <span class="form-focus-underline"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        <span class="form-focus-underline"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required placeholder="Share your thoughts or questions..."></textarea>
+                        <span class="form-focus-underline"></span>
+                    </div>
+
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+                <p class="form-note" id="formNote"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hope Celebration Container -->
+    <div id="hopeContainer" class="hope-container" aria-hidden="true"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Cancer Awareness & Support — Stay Strong</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
